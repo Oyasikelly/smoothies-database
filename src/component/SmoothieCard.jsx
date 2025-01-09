@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import supabase from "../config/SupabaseClient";
-import { useState } from "react";
+
 export default function SmoothieCard({ smoothie, onDelete }) {
   return (
     <div className="smoothie-card">
