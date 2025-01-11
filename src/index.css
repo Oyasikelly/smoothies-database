@@ -52,43 +52,68 @@ nav h1 {
   animation: fadeIn 0.5s ease-in-out;
 }
 
+/* SmoothieCard improvements */
 .smoothie-card {
-  width: 100%;
-  padding: 10px;
   background: #fff;
-  box-sizing: border-box;
-  border-radius: 6px;
-  position: relative;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.smoothie-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-.smoothie-card .rating {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  background: var(--secondary);
-  color: #fff;
-  border-radius: 6px;
-  width: 40px;
-  height: 0;
-  padding: 20px 0;
-  line-height: 0px;
+  overflow: hidden;
   text-align: center;
 }
-.smoothie-card .buttons {
-  text-align: right;
+
+.smoothie-card h3 {
+  font-size: 1.2rem;
+  color: var(--primary);
+  margin-bottom: 10px;
+  text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.smoothie-card i {
-  color: #bbb;
-  margin-left: 10px;
-  font-size: 1.2em;
-  padding: 6px;
-  background: #eee;
+
+.smoothie-card p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 15px;
+  height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.smoothie-card .rating {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  background: var(--secondary);
   border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.smoothie-card .buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.smoothie-card i {
+  color: var(--secondary);
+  font-size: 1.5rem;
   cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.smoothie-card i:hover {
+  color: var(--primary);
+}
+
+.smoothie-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* forms */

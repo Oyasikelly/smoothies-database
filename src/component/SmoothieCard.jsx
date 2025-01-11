@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom";
+import { animated, useSpring } from "@react-spring/web";
 
 export default function SmoothieCard({ smoothie, onDelete }) {
+  const cardStyle = useSpring({
+    opacity: 1,
+    transform: "translateY(0px)",
+    from: { opacity: 0, transform: "translateY(20px)" },
+  });
+
   return (
-    <div className="smoothie-card">
+    <animated.div className="smoothie-card" style={cardStyle}>
       <h3>{smoothie.title}</h3>
       <p>{smoothie.method}</p>
       <div className="rating">{smoothie.rating}</div>
@@ -14,6 +21,6 @@ export default function SmoothieCard({ smoothie, onDelete }) {
           delete
         </i>
       </div>
-    </div>
+    </animated.div>
   );
 }

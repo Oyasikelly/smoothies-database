@@ -1,4 +1,5 @@
 import supabase from "../config/SupabaseClient";
+import { animated, useSpring } from "@react-spring/web";
 import { useEffect, useState } from "react";
 
 // component
@@ -39,12 +40,17 @@ const Home = () => {
     fetchSmoothies();
   }, [orderBy]);
 
+  const fadeInStyle = useSpring({
+    opacity: 1,
+    from: { opacity: 0 },
+    config: { duration: 500 },
+  });
+
   return (
-    <div className="page home">
+    <animated.div className="page home" style={fadeInStyle}>
       {fetchError && <p>{fetchError}</p>}
       {smoothies && (
         <>
-          {/* order by button */}
           <div className="order-by">
             <p>Order by:</p>
             <button onClick={() => setOrderBy("created_at")}>
@@ -53,8 +59,7 @@ const Home = () => {
             <button onClick={() => setOrderBy("title")}>Title</button>
             <button onClick={() => setOrderBy("rating")}>Rating</button>
           </div>
-          <div className="smoothie-grid ">
-            {/* smoothie lists */}
+          <div className="smoothie-grid">
             {smoothies.map((smoothie) => (
               <SmoothieCard
                 key={smoothie.id}
@@ -65,7 +70,7 @@ const Home = () => {
           </div>
         </>
       )}
-    </div>
+    </animated.div>
   );
 };
 
