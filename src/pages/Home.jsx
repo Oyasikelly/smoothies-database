@@ -4,13 +4,29 @@ import { useEffect, useState } from "react";
 
 // component
 import SmoothieCard from "../component/SmoothieCard";
+import Footer from "../component/Footer";
 
 const Home = () => {
   const [fetchError, setFetchError] = useState(null);
   const [smoothies, setSmoothies] = useState(null);
   const [orderBy, setOrderBy] = useState("created_at");
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
+    try {
+      const { error } = await supabase
+        .from("smoothies") // Replace with your table name
+        .delete()
+        .eq("id", id); // Match the record with the specific ID
+
+      if (error) {
+        console.error("Error deleting record:", error.message);
+        return;
+      }
+      console.log("Record deleted successfully");
+    } catch (err) {
+      console.error("Unexpected error:", err);
+    }
+
     setSmoothies((prevSmoothies) => {
       return prevSmoothies.filter((sm) => {
         return sm.id !== id;
@@ -53,11 +69,24 @@ const Home = () => {
         <>
           <div className="order-by">
             <p>Order by:</p>
-            <button onClick={() => setOrderBy("created_at")}>
+            <button
+              className={orderBy == "created_at" ? "order-by-active" : ""}
+              onClick={() => setOrderBy("created_at")}
+            >
               Time Created
             </button>
-            <button onClick={() => setOrderBy("title")}>Title</button>
-            <button onClick={() => setOrderBy("rating")}>Rating</button>
+            <button
+              className={orderBy == "title" ? "order-by-active" : ""}
+              onClick={() => setOrderBy("title")}
+            >
+              Title
+            </button>
+            <button
+              className={orderBy == "rating" ? "order-by-active" : ""}
+              onClick={() => setOrderBy("rating")}
+            >
+              Rating
+            </button>
           </div>
           <div className="smoothie-grid">
             {smoothies.map((smoothie) => (
@@ -70,6 +99,8 @@ const Home = () => {
           </div>
         </>
       )}
+
+      <Footer />
     </animated.div>
   );
 };

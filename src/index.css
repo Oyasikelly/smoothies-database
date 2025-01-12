@@ -25,13 +25,14 @@ nav a {
   color: #f2f2f2;
   margin: 10px;
   display: inline-block;
+  text-decoration: none;
   font-size: 1rem;
+  transition: color 0.5s ease;
 }
 
 nav a:hover {
-  color: #fff;
-  background: var(--secondary);
-  transition: background 0.3s ease, color 0.3s ease;
+  /* color: #fff; */
+  color: var(--secondary);
 }
 nav h1 {
   color: #fff;
@@ -59,17 +60,19 @@ nav h1 {
   border-radius: 8px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
-  text-align: center;
-}
 
+  text-align: center;
+  scrollbar-width: none;
+}
+.smoothie-card::-webkit-scrollbar {
+  scrollbar-width: none; /* Hides scrollbar in Firefox */
+}
 .smoothie-card h3 {
   font-size: 1.2rem;
   color: var(--primary);
   margin-bottom: 10px;
   text-transform: capitalize;
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
 }
 
@@ -78,7 +81,9 @@ nav h1 {
   color: #666;
   margin-bottom: 15px;
   height: 50px;
-  overflow: hidden;
+  overflow-y: auto; /* Enables vertical scrolling if content overflows */
+  scrollbar-width: none; /* Hides scrollbar in Firefox */
+  -ms-overflow-style: none; /* Hides scrollbar in older Internet Explorer */
   text-overflow: ellipsis;
 }
 
@@ -159,6 +164,31 @@ form button:hover {
   color: var(--primary);
 }
 
+.oyasi-kelly-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.toOyasiKelly {
+  text-decoration: none;
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  gap: 0.5rem;
+  transition: color 0.5s ease-in;
+}
+.toOyasiKelly:hover {
+  color: #12bca2;
+}
+.oyasiKelly {
+  color: var(--secondary);
+  transition: color 0.5s ease-in;
+}
+.oyasiKelly:hover {
+  color: var(--primary);
+}
 /* order-by buttons */
 .order-by button {
   margin-right: 10px;
@@ -169,8 +199,17 @@ form button:hover {
   border-radius: 6px;
   font-family: "Poppins";
   cursor: pointer;
+  transition: background 0.5s ease-in;
 }
-
+.order-by button:hover {
+  background: var(--secondary);
+}
+.order-by button:active {
+  opacity: 0.7;
+}
+.order-by button.order-by-active {
+  background: var(--secondary);
+}
 /* Keyframes for fade-in effect */
 @keyframes fadeIn {
   from {
